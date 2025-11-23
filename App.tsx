@@ -23,22 +23,25 @@ const App: React.FC = () => {
 
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [activeJobs, setActiveJobs] = useState(0);
-  const [hasApiKey, setHasApiKey] = useState(false);
+  const [hasApiKey, setHasApiKey] = useState(true);
 
   // Interval Ref for updating progress bars
   const progressInterval = useRef<number | null>(null);
 
   // --- Effects ---
-  
-  // 1. Check API Key
+
+  // 1. Check API Key - For Vercel deployment, we assume API key is configured via environment variables
   useEffect(() => {
       const checkKey = async () => {
+          // Check if running in Google AI Studio environment
           const win = window as any;
           if (win.aistudio && win.aistudio.hasSelectedApiKey) {
               const selected = await win.aistudio.hasSelectedApiKey();
               setHasApiKey(selected);
           } else {
-              setHasApiKey(true); 
+              // For standalone deployment (Vercel), API key is set via environment variables
+              // We assume it's configured - errors will be caught during generation
+              setHasApiKey(true);
           }
       };
       checkKey();
