@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UnReDO Ai - Thumbnail Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+      /* Brand Fonts */
+      .font-brand { font-family: 'Montserrat', sans-serif; }
+      .font-mono { font-family: 'Space Mono', monospace; }
+
+      /* --- GLOBAL TECH THEME --- */
+      
+      /* 1. Custom Tech Cursor */
+      body, a, button, input, textarea, select {
+        cursor: crosshair !important;
+      }
+      
+      /* 2. Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020202; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 0px;
+        border: 1px solid #000;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #FFEA00;
+        box-shadow: 0 0 10px #FFEA00;
+      }
+
+      /* 3. Animations */
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+      .animate-scan {
+        animation: scanline 2.5s linear infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 5px rgba(255, 234, 0, 0.2); border-color: rgba(255, 234, 0, 0.3); }
+        50% { box-shadow: 0 0 15px rgba(255, 234, 0, 0.5); border-color: rgba(255, 234, 0, 0.8); }
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 2s infinite;
+      }
+
+      /* 4. Grid Background Pattern for Loading */
+      .bg-grid-pattern {
+        background-size: 20px 20px;
+        background-image:
+          linear-gradient(to right, rgba(255, 234, 0, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 234, 0, 0.05) 1px, transparent 1px);
+      }
+
+      /* 5. CRT Scanline Overlay Effect (Optional retro feel) */
+      .crt-overlay {
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body class="bg-[#020202] text-slate-200 antialiased overflow-hidden font-brand selection:bg-[#FFEA00] selection:text-black">
+    <div id="root"></div>
+    
+    <!-- Ambient Background Glows -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
+        <div class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-yellow-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-red-900/10 rounded-full blur-[150px] mix-blend-screen"></div>
+    </div>
+    
+    <!-- CRT Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-50 crt-overlay opacity-30"></div>
+  </body>
+</html>

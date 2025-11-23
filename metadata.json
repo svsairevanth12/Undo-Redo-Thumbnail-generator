@@ -1,0 +1,5 @@
+{
+  "name": "Ultimate YouTube Thumbnail Generator",
+  "description": "A high-performance React application leveraging Gemini's multi-modal capabilities to generate professional YouTube thumbnails with actor composition and text overlays.",
+  "requestFramePermissions": []
+}
